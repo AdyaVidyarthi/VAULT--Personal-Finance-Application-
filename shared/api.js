@@ -16,7 +16,8 @@ const API_CONFIG = {
 const STORAGE_KEYS = {
     TRANSACTIONS: 'finance_transactions_data',
     BUDGETS: 'finance_budget_data',
-    INVESTMENTS: 'finance_investments_data'
+    INVESTMENTS: 'finance_investments_data',
+    CATEGORIES: 'finance_custom_categories_data'
 };
 
 const DEFAULT_TRANSACTIONS = [
@@ -50,6 +51,16 @@ const DEFAULT_INVESTMENTS = [
     { id: 5, name: 'Sovereign Gold Bonds (SGB)', assetClass: 'Gold', invested: 20000, current: 24200 },
     { id: 6, name: 'High-Yield Emergency Reserve', assetClass: 'Emergency Fund', invested: 35000, current: 36000 }
 ];
+
+/**
+ * Built-in transaction categories, separated by transaction type.
+ * Derived from the categories already in use across DEFAULT_TRANSACTIONS.
+ * User-created categories are stored separately (see categories.getCustom).
+ */
+const DEFAULT_CATEGORIES = {
+    income: ['Income'],
+    expense: ['Food', 'Housing', 'Utilities', 'Entertainment', 'Transport', 'Health', 'Shopping', 'Savings']
+};
 
 window.FinanceAPI = {
     // Initial capital to balance ledger
@@ -119,6 +130,57 @@ window.FinanceAPI = {
             current.unshift(newTransaction);
             await this.saveAll(current);
             return newTransaction;
+        }
+    },
+
+    /**
+     * Categories API
+     * Built-in categories live in DEFAULTS (read-only, split by transaction type).
+     * Only user-created ("custom") categories are persisted.
+     */
+    categories: {
+        DEFAULTS: DEFAULT_CATEGORIES,
+
+        async getCustom() {
+            if (API_CONFIG.USE_BACKEND) {
+                const res = await fetch(`${API_CONFIG.API_BASE_URL}/categories`);
+                if (!res.ok) throw new Error(`Failed to fetch categories: ${res.statusText}`);
+                return await res.json();
+            }
+
+            try {
+                const stored = localStorage.getItem(STORAGE_KEYS.CATEGORIES);
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    return {
+                        income: Array.isArray(parsed.income) ? parsed.income : [],
+                        expense: Array.isArray(parsed.expense) ? parsed.expense : []
+                    };
+                }
+            } catch (err) {
+                console.warn('FinanceAPI: Error reading categories from storage:', err);
+            }
+            return { income: [], expense: [] };
+        },
+
+        async saveCustom(categories) {
+            if (API_CONFIG.USE_BACKEND) {
+                const res = await fetch(`${API_CONFIG.API_BASE_URL}/categories`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(categories)
+                });
+                if (!res.ok) throw new Error(`Failed to save categories: ${res.statusText}`);
+                return await res.json();
+            }
+
+            try {
+                localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(categories));
+                return true;
+            } catch (err) {
+                console.error('FinanceAPI: Error saving categories:', err);
+                return false;
+            }
         }
     },
 

@@ -184,6 +184,41 @@ body {
     transform: scale(0.98);
 }
 
+/* Header action group: wraps Export + Add entry buttons together so the
+   transactions header row keeps its existing space-between layout. */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Secondary (outline) button style — used for Export, keeps the same
+   sizing/typography as .primary-btn but with a lighter visual weight. */
+.secondary-btn {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    font-weight: 500;
+    background-color: transparent;
+    color: var(--brand-dark);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.1s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.secondary-btn:hover {
+    background-color: #eee9dc;
+    border-color: var(--brand-dark);
+}
+
+.secondary-btn:active {
+    transform: scale(0.98);
+}
+
 /* --------------------------------------------------------------------------
    Form Drawer / Modal
    -------------------------------------------------------------------------- */
@@ -240,6 +275,12 @@ body {
 .form-row-bottom {
     align-items: flex-end;
     margin-bottom: 0;
+}
+
+/* Custom category row — collapsed until "+ Add custom category…" is chosen.
+   Scoped to .form-row so it does not affect .form-drawer.hidden above. */
+.form-row.hidden {
+    display: none;
 }
 
 .input-field {
@@ -389,6 +430,17 @@ body {
 
 #transactions-table tbody tr:last-child td {
     border-bottom: 1px solid var(--line-subtle);
+}
+
+/* Ledger rows open the entry for editing. Scoped to [data-id] so the
+   empty-state row stays non-interactive. */
+#transactions-table tbody tr[data-id] {
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+#transactions-table tbody tr[data-id]:hover {
+    background-color: #f1ede1;
 }
 
 /* Column Widths & Alignments */
@@ -545,5 +597,19 @@ body {
     .form-row {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .transactions-header-row {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .header-actions {
+        width: 100%;
+    }
+
+    .header-actions .secondary-btn,
+    .header-actions .primary-btn {
+        flex: 1;
     }
 }

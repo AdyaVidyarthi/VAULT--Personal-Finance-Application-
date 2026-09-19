@@ -31,22 +31,25 @@
         <header class="portfolio-header">
             <div class="portfolio-title-section">
                 <span class="eyebrow-label">Portfolio Valuation</span>
-                <h1 id="total-portfolio-val" class="balance-display">₹2,45,000.00</h1>
+                <h1 id="total-portfolio-val" class="balance-display">₹0.00</h1>
                 <span class="as-of-label">Combined investments & emergency reserves</span>
             </div>
 
             <div class="stats-section">
                 <div class="stat-box">
                     <span class="stat-label">Total Gain</span>
-                    <span id="total-gain-val" class="stat-value income-val">+₹34,200.00</span>
+                    <span id="total-gain-val" class="stat-value income-val">+₹0.00</span>
                 </div>
                 <div class="stat-box">
                     <span class="stat-label">Overall Return</span>
-                    <span id="total-gain-pct" class="stat-value income-val">+16.2%</span>
+                    <span id="total-gain-pct" class="stat-value income-val">+0.0%</span>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-label">Emergency Fund</span>
-                    <span id="emergency-fund-val" class="stat-value rate-val">₹85,000.00</span>
+                    <span class="stat-label">Emergency Fund (Target: ₹1L)</span>
+                    <span id="emergency-fund-val" class="stat-value rate-val">₹0.00</span>
+                    <div class="ef-progress-track">
+                        <div id="ef-progress-fill" class="ef-progress-fill"></div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -55,13 +58,13 @@
         <section class="allocation-section">
             <div class="allocation-header-row">
                 <h2 class="section-title">Asset Allocation</h2>
-                <span class="allocation-summary" id="allocation-stats">4 Asset Classes</span>
+                <span class="allocation-summary" id="allocation-stats">0 Asset Classes</span>
             </div>
             <div class="allocation-track" id="allocation-track">
-                <!-- Dynamically sized allocation segments -->
+                <!-- Dynamically populated via JS -->
             </div>
             <div class="allocation-legend" id="allocation-legend">
-                <!-- Legend items -->
+                <!-- Dynamically populated via JS -->
             </div>
         </section>
 
@@ -114,6 +117,16 @@
                 </div>
             </section>
 
+            <!-- Category Filter Chips -->
+            <div class="filter-chip-row">
+                <button class="filter-chip active" type="button" onclick="filterCategory('All')">All</button>
+                <button class="filter-chip" type="button" onclick="filterCategory('Mutual Funds')">Mutual Funds</button>
+                <button class="filter-chip" type="button" onclick="filterCategory('Equities / Stocks')">Stocks</button>
+                <button class="filter-chip" type="button" onclick="filterCategory('Fixed Deposit')">FD</button>
+                <button class="filter-chip" type="button" onclick="filterCategory('Gold')">Gold</button>
+                <button class="filter-chip" type="button" onclick="filterCategory('Emergency Fund')">Emergency Fund</button>
+            </div>
+
             <!-- Table -->
             <div class="table-container">
                 <table id="holdings-table">
@@ -128,7 +141,7 @@
                         </tr>
                     </thead>
                     <tbody id="holdings-tbody">
-                        <!-- Populated by savings-investment.js -->
+                        <!-- Dynamically populated via JS -->
                     </tbody>
                 </table>
             </div>

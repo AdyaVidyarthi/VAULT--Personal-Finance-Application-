@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Personal Finance</title>
+    <!-- Google Fonts: Newsreader for editorial serif and Inter for clean UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/nav.css" />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <main class="dashboard-container">
+      <!-- Shared Navigation Bar -->
+      <nav class="app-navbar">
+        <a href="../Home/home.html" class="nav-brand">
+          <span class="nav-brand-title">Personal Finance</span>
+        </a>
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="../Home/home.html" class="nav-link active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="../Transaction/transaction.html" class="nav-link"
+              >Transactions</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="../Budget/budget.html" class="nav-link">Budget</a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="../SavingsAndInvestment/savings-investment.html"
+              class="nav-link"
+              >Savings & Investments</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Executive Header -->
+      <header class="home-header">
+        <div class="header-left">
+          <span class="eyebrow-label">Total Net Worth</span>
+          <h1 id="home-net-balance" class="balance-display">₹5,783.85</h1>
+          <span class="as-of-label"
+            >Ledger balance plus investment holdings</span
+          >
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span class="metric-label">Monthly Income</span>
+            <span id="home-income" class="metric-value income-val"
+              >₹3,650.00</span
+            >
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Monthly Expenses</span>
+            <span id="home-expenses" class="metric-value expense-val"
+              >₹1,329.45</span
+            >
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Savings Rate</span>
+            <span id="home-savings-rate" class="metric-value rate-val"
+              >64%</span
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- Cash Flow Bar -->
+      <section class="cashflow-section">
+        <div class="section-heading-row">
+          <h2 class="section-heading">Monthly Cash Flow</h2>
+          <span id="cashflow-period" class="subtle-note"></span>
+        </div>
+        <div class="flow-progress-track">
+          <div
+            id="flow-expense-bar"
+            class="flow-bar-spent"
+            style="width: 36.4%"
+            title="Expenses (36.4%)"
+          ></div>
+          <div
+            id="flow-savings-bar"
+            class="flow-bar-saved"
+            style="width: 63.6%"
+            title="Savings (63.6%)"
+          ></div>
+        </div>
+        <div class="flow-legend">
+          <div class="legend-item">
+            <span class="legend-dot dot-expense"></span>
+            <span id="flow-expense-label">Spent</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot dot-savings"></span>
+            <span id="flow-savings-label">Retained / Saved</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Two Column Quick Modules: Recent Ledger & Quick Highlights -->
+      <div class="home-grid">
+        <!-- Left: Recent Transactions -->
+        <section class="recent-transactions-card">
+          <div class="section-heading-row">
+            <div>
+              <h2 class="section-heading">Recent Activity</h2>
+              <p class="section-subtext">Latest ledger entries</p>
+            </div>
+            <a href="../Transaction/transaction.html" class="view-all-link"
+              >View all →</a
+            >
+          </div>
+
+          <table class="preview-table">
+            <tbody id="home-recent-tbody">
+              <!-- Populated dynamically by home.js -->
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Right: Quick Navigation Portals -->
+        <section class="portals-container">
+          <!-- Budget Quick Card -->
+          <div class="portal-card">
+            <div class="portal-header">
+              <span class="portal-tag">Budget Overview</span>
+              <a href="../Budget/budget.html" class="portal-arrow">→</a>
+            </div>
+            <h3 class="portal-title">Monthly Limits & Categories</h3>
+            <p class="portal-desc">
+              Track category spending against predetermined targets like Food,
+              Rent, and Utilities.
+            </p>
+            <div class="portal-footer">
+              <span id="home-budget-count" class="portal-stat"
+                >No budgets yet</span
+              >
+              <span id="home-budget-state" class="badge-status"
+                >Set a target</span
+              >
+            </div>
+          </div>
+
+          <!-- Savings & Investment Quick Card -->
+          <div class="portal-card">
+            <div class="portal-header">
+              <span class="portal-tag">Portfolio & Growth</span>
+              <a
+                href="../SavingsAndInvestment/savings-investment.html"
+                class="portal-arrow"
+                >→</a
+              >
+            </div>
+            <h3 class="portal-title">Savings & Investments</h3>
+            <p class="portal-desc">
+              Manage emergency funds, mutual funds, equities, and fixed deposits
+              in one clean dashboard.
+            </p>
+            <div class="portal-footer">
+              <span id="home-investment-value" class="portal-stat"
+                >₹0.00 portfolio</span
+              >
+              <span
+                id="home-investment-return"
+                class="badge-status badge-growth"
+                >No holdings yet</span
+              >
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="../shared/nav.js"></script>
+    <script src="../shared/api.js"></script>
+    <script src="home.js"></script>
+  </body>
+</html>

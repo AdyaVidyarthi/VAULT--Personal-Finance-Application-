@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in - Personal Finance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="shared/auth.css" />
+  </head>
+  <body>
+    <main class="auth-layout">
+      <section class="auth-intro" aria-labelledby="brand-title">
+        <a class="brand" href="auth.html">Personal Finance</a>
+        <div class="intro-copy">
+          <p class="eyebrow">A clearer view of your money</p>
+          <h1 id="brand-title">Make room for what matters.</h1>
+          <p class="intro-note">
+            One private place for your spending, plans, and investments.
+          </p>
+        </div>
+        <div class="intro-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span
+          ><span></span><span></span>
+        </div>
+        <p class="intro-caption">Your finances, organized around you.</p>
+      </section>
+      <section class="auth-panel" aria-labelledby="form-title">
+        <div class="auth-box">
+          <p class="eyebrow" id="form-eyebrow">Welcome back</p>
+          <h2 id="form-title">Sign in</h2>
+          <p class="form-subtitle" id="form-subtitle">
+            Pick up where you left off.
+          </p>
+          <div class="auth-tabs" role="tablist" aria-label="Account access">
+            <button
+              class="auth-tab active"
+              id="login-tab"
+              type="button"
+              role="tab"
+              aria-selected="true"
+            >
+              Sign in
+            </button>
+            <button
+              class="auth-tab"
+              id="signup-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+            >
+              Create account
+            </button>
+          </div>
+          <form id="auth-form" novalidate>
+            <label id="name-label" class="is-hidden" for="name"
+              >Your name</label
+            >
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              maxlength="100"
+              placeholder="Your name"
+              class="is-hidden"
+            />
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              maxlength="254"
+              placeholder="you@example.com"
+              required
+            />
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              minlength="8"
+              placeholder="At least 8 characters"
+              required
+            />
+            <p
+              id="auth-message"
+              class="auth-message"
+              role="alert"
+              aria-live="polite"
+            ></p>
+            <button id="submit-button" class="submit-button" type="submit">
+              Sign in
+            </button>
+          </form>
+          <p class="privacy-note">
+            Your account data is private and only visible to you.
+          </p>
+        </div>
+      </section>
+    </main>
+    <script src="shared/api.js"></script>
+    <script src="shared/auth.js"></script>
+  </body>
+</html>

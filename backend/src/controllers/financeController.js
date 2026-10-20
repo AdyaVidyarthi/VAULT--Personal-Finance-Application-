@@ -70,7 +70,7 @@ const replaceRows = async (userId, rows, table, columns, values) => {
     ]);
     if (rows.length) {
       const placeholders = rows
-        .map(() => `(${columns.map(() => "?").join(", ")})`)
+        .map(() => `(${["?", ...columns.map(() => "?")].join(", ")})`)
         .join(", ");
       await connection.execute(
         `INSERT INTO ${table} (user_id, ${columns.join(", ")}) VALUES ${placeholders}`,

@@ -48,3 +48,5 @@ CREATE TABLE IF NOT EXISTS investments (
     KEY investments_user_id (user_id),
     CONSTRAINT investments_user_fk FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
+
+SELECT * FROM users;

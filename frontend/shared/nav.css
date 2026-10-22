@@ -75,6 +75,35 @@
     border-radius: 2px;
 }
 
+.nav-account {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 18px;
+    border-left: 1px solid #ded8c8;
+}
+
+.nav-account-name {
+    max-width: 130px;
+    overflow: hidden;
+    color: #788278;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nav-logout {
+    border: 0;
+    padding: 6px 0;
+    background: transparent;
+    color: #193628;
+    cursor: pointer;
+    font: 600 0.82rem 'Inter', sans-serif;
+}
+
+.nav-logout:hover { text-decoration: underline; }
+
 @media (max-width: 768px) {
     .app-navbar {
         flex-direction: column;
@@ -95,6 +124,11 @@
         scrollbar-width: none;
         gap: 18px;
         padding-bottom: 6px;
+    }
+
+    .nav-account {
+        flex: 0 0 auto;
+        padding-left: 12px;
     }
 
     .nav-links::-webkit-scrollbar {

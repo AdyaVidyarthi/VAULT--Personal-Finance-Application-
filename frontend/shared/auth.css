@@ -1,0 +1,62 @@
+:root {
+    color-scheme: light;
+    --ink: #18372d;
+    --muted: #66746b;
+    --paper: #f4f2eb;
+    --line: #d9ddd3;
+    --green: #32634b;
+    --lime: #c8d68c;
+    --orange: #c77c4b;
+}
+
+* { box-sizing: border-box; }
+body { min-height: 100vh; margin: 0; background: var(--paper); color: var(--ink); font-family: 'Inter', sans-serif; }
+.auth-layout { display: grid; min-height: 100vh; grid-template-columns: minmax(360px, 0.92fr) minmax(440px, 1.08fr); }
+.auth-intro { position: relative; display: flex; min-height: 100vh; flex-direction: column; overflow: hidden; padding: 42px clamp(32px, 7vw, 104px) 36px; background-color: #1d4034; background-image: repeating-linear-gradient(135deg, transparent 0, transparent 45px, rgba(229, 235, 201, 0.035) 46px, rgba(229, 235, 201, 0.035) 47px); color: #f4f2e9; }
+.brand { color: inherit; font: 600 1.2rem 'Newsreader', Georgia, serif; text-decoration: none; }
+.intro-copy { margin: auto 0 0; padding-bottom: 52px; }
+.eyebrow { margin: 0 0 14px; color: var(--orange); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.intro-copy .eyebrow { color: var(--lime); }
+.intro-copy h1 { max-width: 520px; margin: 0; font: 500 4rem/0.98 'Newsreader', Georgia, serif; }
+.intro-note { max-width: 350px; margin: 24px 0 0; color: #d5dfd5; font-size: 0.98rem; line-height: 1.7; }
+.intro-mark { display: flex; height: 112px; align-items: end; gap: 9px; border-bottom: 1px solid rgba(239, 239, 216, 0.25); }
+.intro-mark span { width: 10%; background: var(--lime); opacity: 0.9; }
+.intro-mark span:nth-child(1) { height: 34%; opacity: .35; }
+.intro-mark span:nth-child(2) { height: 51%; opacity: .5; }
+.intro-mark span:nth-child(3) { height: 45%; opacity: .42; }
+.intro-mark span:nth-child(4) { height: 72%; opacity: .66; }
+.intro-mark span:nth-child(5) { height: 61%; opacity: .6; }
+.intro-mark span:nth-child(6) { height: 85%; opacity: .8; }
+.intro-mark span:nth-child(7) { height: 100%; }
+.intro-caption { margin: 14px 0 0; color: #c7d4ca; font-size: 0.78rem; }
+.auth-panel { display: grid; place-items: center; padding: 48px 28px; }
+.auth-box { width: min(100%, 420px); animation: arrive 450ms ease-out both; }
+.auth-box h2 { margin: 0; font: 500 2.75rem/1.05 'Newsreader', Georgia, serif; }
+.form-subtitle { margin: 10px 0 30px; color: var(--muted); font-size: 0.92rem; }
+.auth-tabs { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 26px; border-bottom: 1px solid var(--line); }
+.auth-tab { border: 0; border-bottom: 2px solid transparent; padding: 12px 8px; background: transparent; color: var(--muted); cursor: pointer; font: 600 0.84rem 'Inter', sans-serif; }
+.auth-tab.active { border-color: var(--green); color: var(--ink); }
+#auth-form { display: grid; gap: 10px; }
+#auth-form label { margin-top: 6px; font-size: 0.78rem; font-weight: 600; }
+#auth-form input { width: 100%; min-height: 48px; border: 1px solid #cdd4ca; border-radius: 3px; padding: 0 13px; background: #fbfaf6; color: var(--ink); font: 0.9rem 'Inter', sans-serif; }
+#auth-form input:focus { border-color: var(--green); outline: 2px solid rgba(50, 99, 75, .16); }
+.is-hidden { display: none !important; }
+.auth-message { min-height: 20px; margin: 4px 0 0; color: #a24435; font-size: 0.82rem; line-height: 1.4; }
+.submit-button { min-height: 50px; margin-top: 3px; border: 0; border-radius: 3px; background: var(--green); color: white; cursor: pointer; font: 600 0.9rem 'Inter', sans-serif; transition: background 150ms ease; }
+.submit-button:hover { background: #254d3b; }
+.submit-button:disabled { cursor: wait; opacity: .7; }
+.privacy-note { margin: 20px 0 0; color: var(--muted); font-size: 0.75rem; text-align: center; }
+@keyframes arrive { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 760px) {
+    .auth-layout { grid-template-columns: 1fr; }
+    .auth-intro { min-height: auto; padding: 24px 26px 28px; }
+    .intro-copy { margin: 46px 0 0; padding-bottom: 0; }
+    .intro-copy h1 { max-width: 460px; font-size: 2.75rem; }
+    .intro-note { margin-top: 14px; }
+    .intro-mark, .intro-caption { display: none; }
+    .auth-panel { align-items: start; padding: 36px 24px 42px; }
+    .auth-box { max-width: 440px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
